@@ -1,0 +1,25 @@
+.staff-card {
+    width: 100;
+    border: 1px solid rgb(223, 223, 223);
+    border-radius: 5px;
+    margin-top: 1rem;;
+
+  }
+  .staff-card:hover,
+  .staff-card:focus,
+  .staff-card:active {
+    border-color: rgb(78, 45, 132);
+    color: rgb(78, 45, 132);
+  }
+  
+
+
+
+.icons {
+    color: #4b0082;
+    padding-right: 2rem;
+  }
+  .modify {
+    position: absolute;
+    right: 0;
+  }
