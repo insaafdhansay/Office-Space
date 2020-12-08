@@ -10,6 +10,10 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { OfficePageComponent } from './components/office-page/office-page.component';
+import { StaffCardComponent } from './components/staff-card/staff-card.component';
+
+
+
 
 
 
@@ -19,7 +23,11 @@ import { OfficePageComponent } from './components/office-page/office-page.compon
     AppComponent,
     OfficeCardComponent,
     HomePageComponent,
-    OfficePageComponent
+    OfficePageComponent,
+    StaffCardComponent,
+
+
+
   ],
   imports: [
     BrowserModule,
