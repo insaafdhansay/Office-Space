@@ -1,46 +1,39 @@
+
 .office-card {
-    max-width: 350px;
-    border: 1px solid rgb(223, 223, 223);
-    border-radius: 5px;
-
-  }
-  .office-card:hover,
-  .office-card:focus,
-  .office-card:active {
-    border-color: rgb(78, 45, 132);
-    color: rgb(78, 45, 132);
-  }
-  
-.icons{
-    color:#4B0082;
-    padding-right: 2rem;
- 
+  width: 100;
+  border: 1px solid rgb(223, 223, 223);
+  border-radius: 5px;
+  margin-top: 1rem;;
 }
-.modify{
-position:absolute;
-right:0;
-padding-right: 1rem;
-
-
+.office-card:hover,
+.office-card:focus,
+.office-card:active {
+  border-color: rgb(78, 45, 132);
+  color: rgb(78, 45, 132);
 }
-.email{
-   display: flex;
-}
-.phone{
-    display: flex;
 
- }
-.iconOccupants{
-    color:#4B0082;
-    position:absolute;
-    right:0;
-    padding-right: 5rem;
-   
+.icons {
+  color: #4b0082;
+  padding-right: 2rem;
 }
-.numOccupants{
-    position:absolute;
-    right:0;
-    padding-right: 2.5rem;;
-    
-
+.modify {
+  position: absolute;
+  right: 0;
+}
+.email {
+  display: flex;
+}
+.phone {
+  display: flex;
+}
+.iconOccupants {
+  color: #4b0082;
+  position: absolute;
+  right: 0;
+  padding-right: 5rem;
+}
+.numOccupants {
+  position: absolute;
+  right: 0;
+  padding-right: 2.5rem;
 }
