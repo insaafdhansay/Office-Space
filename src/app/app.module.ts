@@ -8,6 +8,8 @@ import { OfficeCardComponent } from './components/office-card/office-card.compon
 import { MatCardModule } from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { HomePageComponent } from './components/home-page/home-page.component';
+import { OfficePageComponent } from './components/office-page/office-page.component';
 
 
 
@@ -15,7 +17,9 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 @NgModule({
   declarations: [
     AppComponent,
-    OfficeCardComponent
+    OfficeCardComponent,
+    HomePageComponent,
+    OfficePageComponent
   ],
   imports: [
     BrowserModule,
