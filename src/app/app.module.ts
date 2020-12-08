@@ -3,14 +3,24 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { OfficeCardComponent } from './components/office-card/office-card.component';
+import { MatCardModule } from '@angular/material/card';
+import {MatIconModule} from '@angular/material/icon';
+
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    OfficeCardComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
