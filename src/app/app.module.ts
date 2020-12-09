@@ -12,6 +12,8 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { OfficePageComponent } from './components/office-page/office-page.component';
 import { StaffCardComponent } from './components/staff-card/staff-card.component';
 
+import {MatDialogModule} from '@angular/material/dialog';
+
 
 
 
@@ -28,6 +30,7 @@ import { StaffCardComponent } from './components/staff-card/staff-card.component
 
 
 
+
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,8 @@ import { StaffCardComponent } from './components/staff-card/staff-card.component
     BrowserAnimationsModule,
     MatCardModule,
     MatIconModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
