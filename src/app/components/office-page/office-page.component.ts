@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { StaffModifyComponent } from '../staff-modify/staff-modify.component';
+
 
 
 @Component({
@@ -7,12 +10,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./office-page.component.scss']
 })
 
-export class OfficePageComponent implements OnInit {
+export class OfficePageComponent {
+  constructor(public matDialog: MatDialog) { }
 
-  constructor() { }
+  openStaffModal() {
+    const dialogConfig = new MatDialogConfig();
 
-  ngOnInit(): void {
+    dialogConfig.id = "modal-component";
+    dialogConfig.height = "60%";
+    dialogConfig.width = "90%";
+    const modalDialog = this.matDialog.open(StaffModifyComponent, dialogConfig);
   }
-}
-  
 
+  
+}

@@ -6,8 +6,8 @@
 
       <mat-card-subtitle>Address</mat-card-subtitle>
       <div class="modify">
-        <mat-icon class="icons" mat-card-avatar>edit</mat-icon>
-        <mat-icon class="icons" mat-card-avatar>delete</mat-icon>
+        <mat-icon class="icons" mat-card-avatar (click)="openOfficeModal()">edit</mat-icon>
+        <mat-icon class="icons" mat-card-avatar (click)="openRemoveModal()">delete</mat-icon>
       </div>
     </mat-card-header>
     <mat-card-content>
@@ -20,8 +20,7 @@
         <mat-icon class="icons" mat-card-avatar>phone</mat-icon>
         <p>08243501923</p>
 
-        <mat-icon class="iconOccupants" mat-card-avatar>person</mat-icon>
-        <p class="numOccupants">15</p>
+      
       </div>
     </mat-card-content>
   </mat-card>
