@@ -4,8 +4,8 @@
         <mat-icon class="icons" mat-card-avatar>person</mat-icon>
       <mat-card-title>Staff Member Name</mat-card-title>
       <div class="modify">
-        <mat-icon class="icons" mat-card-avatar>edit</mat-icon>
-        <mat-icon class="icons" mat-card-avatar>delete</mat-icon>
+        <mat-icon class="icons" mat-card-avatar (click)="  openStaffModal()">edit</mat-icon>
+        <mat-icon class="icons" mat-card-avatar (click)="  openRemoveModal()">delete</mat-icon>
       </div>
     </mat-card-header>
    
