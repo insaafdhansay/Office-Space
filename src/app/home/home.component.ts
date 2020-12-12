@@ -1,26 +1,24 @@
+
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { StaffModifyComponent } from '../staff-modify/staff-modify.component';
-
-
-
+import { OfficeModifyComponent } from '../components/office-modify/office-modify.component';
 @Component({
-  selector: 'app-office-page',
-  templateUrl: './office-page.component.html',
-  styleUrls: ['./office-page.component.scss']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
 
-export class OfficePageComponent {
+
+
+export class HomeComponent {
   constructor(public matDialog: MatDialog) { }
 
-  openStaffModal() {
+openOfficeModal() {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.id = "modal-component";
     dialogConfig.height = "60%";
     dialogConfig.width = "90%";
-    const modalDialog = this.matDialog.open(StaffModifyComponent, dialogConfig);
+    const modalDialog = this.matDialog.open(OfficeModifyComponent, dialogConfig);
   }
-
-  
 }
