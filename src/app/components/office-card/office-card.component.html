@@ -1,12 +1,12 @@
 
-  <mat-card class="office-card">
+  <mat-card class="office-card" routerLink="/office">
     <mat-card-header>
       <img src="/assets/office.png" alt="building" mat-card-avatar />
       <mat-card-title>Office Name</mat-card-title>
 
       <mat-card-subtitle>Address</mat-card-subtitle>
       <div class="modify">
-        <mat-icon class="icons" mat-card-avatar (click)="openOfficeModal()">edit</mat-icon>
+        <mat-icon class="icons" mat-card-avatar (click)="openOfficeModal()" >edit</mat-icon>
         <mat-icon class="icons" mat-card-avatar (click)="openRemoveModal()">delete</mat-icon>
       </div>
     </mat-card-header>
