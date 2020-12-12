@@ -10,6 +10,7 @@ const routes: Routes = [  {
   path: 'home',
   component: HomePageComponent
 },
+
 {
   path: 'office',
   component: OfficePageComponent

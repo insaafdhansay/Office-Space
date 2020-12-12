@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { OfficeRoutingModule } from './office-routing.module';
 import { OfficeComponent } from './office.component';
+import { OfficePageComponent } from '../components/office-page/office-page.component';
 
 
 @NgModule({
