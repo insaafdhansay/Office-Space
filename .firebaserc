@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "officespace-6e64c": {
+      "hosting": {
+        "Office-Space": [
+          "officespace-6e64c"
+        ]
+      }
+    }
+  }
+}
