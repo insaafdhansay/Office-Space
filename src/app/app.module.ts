@@ -13,6 +13,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { RemoveComponent } from './components/remove/remove.component';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent, OfficeModifyComponent, RemoveComponent],
@@ -27,6 +30,9 @@ import { RemoveComponent } from './components/remove/remove.component';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent],
