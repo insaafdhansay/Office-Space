@@ -16,6 +16,9 @@ import { RemoveComponent } from './components/remove/remove.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
+import { OfficeService } from './services/office.service';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [AppComponent, OfficeModifyComponent, RemoveComponent],
@@ -32,9 +35,12 @@ import { environment } from '../environments/environment';
     MatButtonModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    ReactiveFormsModule,
+    FormsModule
+
 
   ],
-  providers: [],
+  providers: [OfficeService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
