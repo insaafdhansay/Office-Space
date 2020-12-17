@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,6 +16,8 @@ import { RemoveComponent } from './components/remove/remove.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
+import { OfficeService } from './services/office.service';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [AppComponent, OfficeModifyComponent, RemoveComponent],
@@ -32,9 +34,11 @@ import { environment } from '../environments/environment';
     MatButtonModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-
+    ReactiveFormsModule,
+    FormsModule,
+    MatSelectModule,
   ],
-  providers: [],
+  providers: [OfficeService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

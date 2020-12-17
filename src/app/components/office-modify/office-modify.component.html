@@ -1,4 +1,5 @@
-<form>
+<form [formGroup]="officeForm">
+  
 
   <div class="officeModify">
       <div mat-dialog-actions align="end">
@@ -12,45 +13,45 @@
   <div mat-dialog-content>
     <mat-form-field class="formFields">
       <mat-label>Office Name</mat-label>
-      <input matInput placeholder="" />
+      <input matInput placeholder=""  matNativeControl required class="form-control" formControlName="name"/>
     </mat-form-field>
     <br />
 
     <mat-form-field class="formFields">
       <mat-label>Email address</mat-label>
-      <input matInput placeholder="" />
+      <input matInput placeholder="" matNativeControl required class="form-control" formControlName="email" />
     </mat-form-field>
     <br />
 
     <mat-form-field class="formFields">
       <mat-label>Office telephone</mat-label>
-      <input matInput placeholder="" />
+      <input matInput placeholder=""  class="form-control" formControlName="tel"/>
     </mat-form-field>
     <br />
 
    <mat-form-field class="formFields">
       <mat-label>Address</mat-label>
-      <input matInput placeholder="" />
+      <input matInput placeholder="" matNativeControl required class="form-control" formControlName="address"/>
     </mat-form-field>
     <br />
 
     <mat-form-field class="formFields">
       <mat-label>Max number of occupants</mat-label>
-      <input matInput placeholder="" />
+      <input matInput placeholder="" matNativeControl required class="form-control" formControlName="maxOcc"/>
     </mat-form-field>
     <br />
     <mat-form-field class="formFields">
-      <mat-label>Office Colour</mat-label>
-      <select matNativeControl required>
-        <option value="purple">Purple</option>
-        <option value="red">Red</option>
-        <option value="blue">Blue</option>
-        <option value="green">Green</option>
-      </select>
+    <mat-label>Office Colour</mat-label>
+      <mat-select (selectionChange)="selectedValue($event)" class="form-control" formControlName="officeCol">
+        <mat-option [value]="'green'">Green</mat-option>
+        <mat-option [value]="'blue'">Blue </mat-option>
+        <mat-option [value]="'purple'">Purple</mat-option>
+        <mat-option [value]="'pink'">Pink</mat-option>
+      </mat-select>
     </mat-form-field>
   </div>
   <div class="save">
-    <button mat-button class="saveBtn">Save Office</button>
+    <button mat-button class="saveBtn" type="submit"(click)="onSubmit()"  >Save Office</button>
   </div>
 </div>
 </form>

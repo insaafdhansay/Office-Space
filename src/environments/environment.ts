@@ -4,13 +4,13 @@
 
 export const environment = {
   production: false,
-  firebase:{
-    apiKey: "AIzaSyDFRGv6VK8mr2jthbfqITrYdsc3I80VSKU",
-    authDomain: "officespace-6e64c.firebaseapp.com",
-    projectId: "officespace-6e64c",
-    storageBucket: "officespace-6e64c.appspot.com",
-    messagingSenderId: "5476863038",
-    appId: "1:5476863038:web:8bcdd1c6e37cdba0b5d56f"
+  firebase:{apiKey: "AIzaSyDFRGv6VK8mr2jthbfqITrYdsc3I80VSKU",
+  authDomain: "officespace-6e64c.firebaseapp.com",
+  databaseURL: "https://officespace-6e64c-default-rtdb.firebaseio.com",
+  projectId: "officespace-6e64c",
+  storageBucket: "officespace-6e64c.appspot.com",
+  messagingSenderId: "5476863038",
+  appId: "1:5476863038:web:8bcdd1c6e37cdba0b5d56f"
   }
 };
 
