@@ -12,8 +12,7 @@ export class OfficeService {
 
 
   constructor(public firestore: AngularFirestore) {
-    this.offices = firestore.collection('Offices').valueChanges();
-    this.staffMembers = firestore.collection('StaffMembers').valueChanges();
+   
 
   }
    makeid() {
@@ -25,7 +24,9 @@ export class OfficeService {
     }
     return result;
  }
-  createUser(value){
+  addOffice(value,officeColour){
+    console.log("added");
+    console.log(value.officeColour);
     return this.firestore.collection('Offices').add({
       id:this.makeid(),
       name: value.name,
@@ -33,10 +34,28 @@ export class OfficeService {
       tel: value.tel,
       address: value.address,
       maxOcc: parseInt(value.maxOcc),
-      officeColour: value.officeColour,
+      officeCol : officeColour
+  
+      
 
     });
+  
   }
+  getOffices(){
+    {
+      return new Promise<any>((resolve, reject) => {
+        this.firestore.collection('/Offices').snapshotChanges()
+        .subscribe(snapshots => {
+          resolve(snapshots)
+        })
+      })
+    }
+
+  //this.offices = this.firestore.collection('Offices').valueChanges();
+
+   // this.staffMembers = this.firestore.collection('StaffMembers').valueChanges();
+  }
+  
   
 
 }

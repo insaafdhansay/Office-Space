@@ -5,8 +5,9 @@ import {
   Validators,
   FormControl,
 } from '@angular/forms';
-import { OfficeService } from '../services/office.service';
+import { OfficeService } from './../../services/office.service';
 import { Router } from '@angular/router';
+import { MatSelectChange } from '@angular/material/select';
 
 @Component({
   selector: 'app-office-modify',
@@ -14,12 +15,42 @@ import { Router } from '@angular/router';
   styleUrls: ['./office-modify.component.scss'],
 })
 export class OfficeModifyComponent implements OnInit {
-  constructor(public officeService: OfficeService, private router: Router) {}
+  officeForm: FormGroup;
+  selectedColour: string = "black";
+ 
+  constructor(
+    public officeService: OfficeService,
+    private router: Router,
+    private fb: FormBuilder,
+   
+    
+    
+  ) {}
 
-  ngOnInit(): void {}
-  onSubmit(value) {
-    this.officeService.createUser(value).then((res) => {
-      this.router.navigate(['/home']);
+  ngOnInit(): void {
+    this.createForm();
+  }
+
+  createForm() {
+    this.officeForm = this.fb.group({
+      name: [''],
+      address: [''],
+      email: [''],
+      tel: [''],
+      maxOcc: [''],
+      officeCol: [''],
     });
+  }
+  selectedValue(event: MatSelectChange) {
+    this.selectedColour = event.source.triggerValue;
+    console.log(this.selectedColour);
+    
+  }
+  onSubmit() {
+    this.officeService
+      .addOffice(this.officeForm.value,this.selectedColour)
+      .then((res) => {
+        this.router.navigate(['/home']);
+      });
   }
 }
