@@ -47,6 +47,7 @@ export class OfficeModifyComponent implements OnInit {
     
   }
   onSubmit() {
+    console.log("called ")
     this.officeService
       .addOffice(this.officeForm.value,this.selectedColour)
       .then((res) => {

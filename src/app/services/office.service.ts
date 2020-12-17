@@ -25,9 +25,9 @@ export class OfficeService {
     return result;
  }
   addOffice(value,officeColour){
-    console.log("added");
-    console.log(value.officeColour);
+    console.log("called");
     return this.firestore.collection('Offices').add({
+
       id:this.makeid(),
       name: value.name,
       email: value.email,
@@ -39,17 +39,11 @@ export class OfficeService {
       
 
     });
+
   
   }
   getOffices(){
-    {
-      return new Promise<any>((resolve, reject) => {
-        this.firestore.collection('/Offices').snapshotChanges()
-        .subscribe(snapshots => {
-          resolve(snapshots)
-        })
-      })
-    }
+    return this.firestore.collection("Offices").snapshotChanges();
 
   //this.offices = this.firestore.collection('Offices').valueChanges();
 

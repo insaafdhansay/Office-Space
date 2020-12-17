@@ -11,8 +11,9 @@ import { Observable } from 'rxjs';
   templateUrl: './office-card.component.html',
   styleUrls: ['./office-card.component.scss'],
 })
-export class OfficeCardComponent {
+export class OfficeCardComponent  implements OnInit  {
   offices: Observable<any[]>;
+  
 
   constructor(
     public matDialog: MatDialog,
@@ -23,9 +24,13 @@ export class OfficeCardComponent {
     this.getOfficeData();
   }
   getOfficeData() {
-    this.officeService.getOffices().subscribe((result) => {
+    /**  this.officeService.getOffices().subscribe((result) => {
       this.offices = result;
-    });
+    }); */
+
+    this.offices = this.officeService.getOffices();
+    //this.officeService.getOffices().subscribe(res =>(this.offices = res));
+  
   }
 
   openOfficeModal() {
