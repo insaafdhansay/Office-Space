@@ -9,6 +9,8 @@ import { OfficeService } from './../../services/office.service';
 import { Router } from '@angular/router';
 import { MatSelectChange } from '@angular/material/select';
 
+
+
 @Component({
   selector: 'app-office-modify',
   templateUrl: './office-modify.component.html',
@@ -47,7 +49,7 @@ export class OfficeModifyComponent implements OnInit {
     
   }
   onSubmit() {
-    console.log("called ")
+    console.log("called ");
     this.officeService
       .addOffice(this.officeForm.value,this.selectedColour)
       .then((res) => {
