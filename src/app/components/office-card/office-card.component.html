@@ -7,7 +7,7 @@
 
       <mat-card-subtitle>{{office.payload.doc.data().address}}</mat-card-subtitle>
       <div class="modify" >
-        <mat-icon class="icons" mat-card-avatar (click)="openOfficeModal()" >edit</mat-icon>
+        <mat-icon class="icons" mat-card-avatar (click)="openOfficeModal(office)"  >edit</mat-icon>
         <mat-icon class="icons" mat-card-avatar (click)="openRemoveModal()">delete</mat-icon>
       </div>
     </mat-card-header>
