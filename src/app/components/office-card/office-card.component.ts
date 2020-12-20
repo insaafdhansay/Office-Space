@@ -39,6 +39,9 @@ export class OfficeCardComponent  implements OnInit  {
     dialogConfig.id = 'modal-component';
     dialogConfig.height = '60%';
     dialogConfig.width = '90%';
+    dialogConfig.data={
+      title:"Edit"
+    }
     const modalDialog = this.matDialog.open(
       OfficeModifyComponent,
       dialogConfig

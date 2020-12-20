@@ -19,6 +19,10 @@ openOfficeModal() {
     dialogConfig.id = "modal-component";
     dialogConfig.height = "60%";
     dialogConfig.width = "90%";
+    dialogConfig.data={
+      title:"Add"
+    }
+
     const modalDialog = this.matDialog.open(OfficeModifyComponent, dialogConfig);
   }
 }

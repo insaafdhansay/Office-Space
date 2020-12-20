@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject} from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -8,6 +8,7 @@ import {
 import { OfficeService } from './../../services/office.service';
 import { Router } from '@angular/router';
 import { MatSelectChange } from '@angular/material/select';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-office-modify',
@@ -16,16 +17,18 @@ import { MatSelectChange } from '@angular/material/select';
 })
 export class OfficeModifyComponent implements OnInit {
   officeForm: FormGroup;
-  selectedColour: string = "black";
- 
+  selectedColour: string = 'black';
+  title:string;
+
   constructor(
     public officeService: OfficeService,
     private router: Router,
     private fb: FormBuilder,
-   
-    
-    
-  ) {}
+    public dialogRef: MatDialogRef<OfficeModifyComponent>,
+     @Inject(MAT_DIALOG_DATA) public data: any
+  ) {
+    this.title = data.title;
+  }
 
   ngOnInit(): void {
     this.createForm();
@@ -44,12 +47,11 @@ export class OfficeModifyComponent implements OnInit {
   selectedValue(event: MatSelectChange) {
     this.selectedColour = event.source.triggerValue;
     console.log(this.selectedColour);
-    
   }
   onSubmit() {
-    console.log("called ")
+    console.log('called ');
     this.officeService
-      .addOffice(this.officeForm.value,this.selectedColour)
+      .addOffice(this.officeForm.value, this.selectedColour)
       .then((res) => {
         this.router.navigate(['/home']);
       });
