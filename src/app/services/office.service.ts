@@ -25,7 +25,7 @@ export class OfficeService {
     return result;
  }
   addOffice(value,officeColour){
-    console.log("called");
+
     return this.firestore.collection('Offices').add({
 
       id:this.makeid(),
