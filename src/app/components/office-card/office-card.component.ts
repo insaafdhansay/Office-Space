@@ -12,14 +12,7 @@ import { Observable } from 'rxjs';
 })
 export class OfficeCardComponent implements OnInit {
   offices: Observable<any[]>;
-  /**   officeID:string;
-  officeName:string;
-  officeEmail:string;
-  officeTel:string;
-  OfficeMaxOcc:number;
-  officeCol:string;
-  officeAddress:string;
-  officeDocID:string;*/
+  
 
   constructor(
     public matDialog: MatDialog,
@@ -78,6 +71,7 @@ export class OfficeCardComponent implements OnInit {
     this.officeService.setOfficeDetails(
       data.payload.doc.data(),
       data.payload.doc.id
-    );
+  
+    );    console.log( data.payload.doc.id);
   }
 }

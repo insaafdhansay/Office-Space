@@ -1,8 +1,8 @@
 
-<mat-card class="staff-card">
+<mat-card class="staff-card" *ngFor="let staffMember of staffMembers | async" >
     <mat-card-header>
         <mat-icon class="icons" mat-card-avatar>person</mat-icon>
-      <mat-card-title>Staff Member Name</mat-card-title>
+      <mat-card-title>{{staffMember.payload.doc.data().firstName}} {{staffMember.payload.doc.data().lastName}}</mat-card-title>
       <div class="modify">
         <mat-icon class="icons" mat-card-avatar (click)="  openStaffModal()">edit</mat-icon>
         <mat-icon class="icons" mat-card-avatar (click)="  openRemoveModal()">delete</mat-icon>

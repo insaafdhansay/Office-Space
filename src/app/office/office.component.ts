@@ -25,6 +25,15 @@ export class OfficeComponent {
     dialogConfig.id = "modal-component";
     dialogConfig.height = "60%";
     dialogConfig.width = "90%";
+    dialogConfig.data = {
+      title: 'Add',
+      OfficeDocID: this.officeService.docID,
+    
+ 
+     
+    };
+     
+  
     const modalDialog = this.matDialog.open(StaffModifyComponent, dialogConfig);
   } 
 

@@ -17,6 +17,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 import { OfficeService } from './services/office.service';
+import { StaffService } from './services/staff.service';
 import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
@@ -38,7 +39,7 @@ import { MatSelectModule } from '@angular/material/select';
     FormsModule,
     MatSelectModule,
   ],
-  providers: [OfficeService],
+  providers: [OfficeService,StaffService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
