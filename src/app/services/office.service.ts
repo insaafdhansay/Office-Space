@@ -49,7 +49,15 @@ export class OfficeService {
 
    // this.staffMembers = this.firestore.collection('StaffMembers').valueChanges();
   }
+  updateOffice(docID, value){
   
+    return this.firestore.collection('Offices').doc(docID).set(value);
+  }
+  deleteOffice(docID){
+    return this.firestore.collection('Offices').doc(docID).delete();
+
+
+  }
   
 
 }

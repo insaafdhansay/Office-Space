@@ -78,19 +78,21 @@ export class OfficeCardComponent  implements OnInit  {
     );
   }
 
-  openRemoveModal() {
+  openRemoveModal(data) {
+    
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.id = 'modal-component';
     dialogConfig.height = '30%';
     dialogConfig.width = '90%';
+    dialogConfig.data={
+    docID:data.payload.doc.id,
+    officeName:data.payload.doc.data().name,
+
+    }
     const modalDialog = this.matDialog.open(RemoveComponent, dialogConfig);
   }
-  getOfficeChosen(data){
-  
-  
-   
-}
+
 
 
 }

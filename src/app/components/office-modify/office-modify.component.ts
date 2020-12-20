@@ -19,14 +19,14 @@ export class OfficeModifyComponent implements OnInit {
   officeForm: FormGroup;
   selectedColour: string = 'black';
   title: string;
-  officeID:string;
-  name:string;
-  email:string;
-  tel:string;
-  maxOcc:number;
-  colour:string;
-  address:string;
-  docID:string;
+  officeID: string;
+  name: string;
+  email: string;
+  tel: string;
+  maxOcc: number;
+  colour: string;
+  address: string;
+  docID: string;
 
   constructor(
     public officeService: OfficeService,
@@ -43,15 +43,14 @@ export class OfficeModifyComponent implements OnInit {
     this.maxOcc = data.maxOcc;
     this.colour = data.colour;
     this.docID = data.docID;
-    this.officeID=data.officeID;
-
+    this.officeID = data.officeID;
   }
 
   ngOnInit(): void {
     if (this.title == 'Add') {
       this.createForm();
     } else {
-     this.editForm()
+      this.editForm();
     }
   }
 
@@ -72,7 +71,7 @@ export class OfficeModifyComponent implements OnInit {
       email: [this.email],
       tel: [this.tel],
       maxOcc: [this.maxOcc],
-      officeCol: [this.colour], //setting isnt working 
+      officeCol: [this.colour], //setting isnt working
     });
   }
   selectedValue(event: MatSelectChange) {
@@ -80,11 +79,26 @@ export class OfficeModifyComponent implements OnInit {
     console.log(this.selectedColour);
   }
   onSubmit() {
-    console.log('called ');
+    if (this.title == 'Add') {
+      this.onSubmitAdd();
+    } else {
+      this.onSubmitEdit();
+    }
+  }
+  onSubmitAdd() {
     this.officeService
       .addOffice(this.officeForm.value, this.selectedColour)
       .then((res) => {
         this.router.navigate(['/home']);
       });
+  }
+  onSubmitEdit() {
+    this.officeService.updateOffice(this.docID, this.officeForm.value)
+  .then(
+    res => {
+      this.router.navigate(['/home']);
+    }
+  )
+
   }
 }
