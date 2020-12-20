@@ -18,6 +18,10 @@ export class StaffModifyComponent implements OnInit {
   title: string;
   staffForm: FormGroup;
   OfficeDocID: string;
+  firstName:string;
+  lastName:string;
+  staffMemberID:string;
+  staffDocID:string;
 
   constructor(
     private fb: FormBuilder,
@@ -28,6 +32,11 @@ export class StaffModifyComponent implements OnInit {
   ) {
     this.title = data.title;
     this.OfficeDocID = data.OfficeDocID;
+    this.firstName=data.firstName;
+    this.lastName=data.lastName;
+    this.staffMemberID=data.staffMemberID;
+    this.staffDocID=data.staffDocID;
+
   }
 
 
@@ -48,15 +57,15 @@ export class StaffModifyComponent implements OnInit {
   }
   editForm() {
     this.staffForm = this.fb.group({
-      //  firstName: [this.name],
-      //  lastName: [this.address],
+      firstName: [this.firstName],
+       lastName: [this.lastName],
     });
   }
   onSubmit() {
     if (this.title == 'Add') {
       this.onSubmitAdd();
     } else {
-      //this.onSubmitEdit();
+      this.onSubmitEdit();
     }
   } 
 
@@ -64,19 +73,12 @@ export class StaffModifyComponent implements OnInit {
 
     this.staffService
       .addStaffMember(this.staffForm.value,this.OfficeDocID )
-      .then((res) => {
-        this.router.navigate(['/office']);
-        console.log(this.OfficeDocID)
-      });
+      
   }
-  /**onSubmitEdit() {
-    this.staffService.updateOffice(this.staffForm.value)
-  .then(
-    res => {
-      this.router.navigate(['/home']);
-    }
-  )
+  onSubmitEdit() {
+    this.staffService.updateStaffMember(this.staffDocID,this.staffForm.value)
+ 
 
-  } */
+  } 
    
 }

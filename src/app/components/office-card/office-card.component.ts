@@ -63,7 +63,8 @@ export class OfficeCardComponent implements OnInit {
     dialogConfig.width = '90%';
     dialogConfig.data = {
       docID: data.payload.doc.id,
-      officeName: data.payload.doc.data().name,
+      name: data.payload.doc.data().name,
+      modify:"Office"
     };
     const modalDialog = this.matDialog.open(RemoveComponent, dialogConfig);
   }
@@ -72,6 +73,6 @@ export class OfficeCardComponent implements OnInit {
       data.payload.doc.data(),
       data.payload.doc.id
   
-    );    console.log( data.payload.doc.id);
+    );   
   }
 }

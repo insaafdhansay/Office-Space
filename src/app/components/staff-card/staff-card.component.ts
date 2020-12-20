@@ -22,7 +22,7 @@ export class StaffCardComponent {
 
   }
 
-  openStaffModal() {
+  openStaffModal(data) {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.id = 'modal-component';
@@ -30,19 +30,30 @@ export class StaffCardComponent {
     dialogConfig.width = '90%';
     dialogConfig.data = {
       title: 'Edit',
-      //officeID: data.payload.doc.data().id,
-      // name: data.payload.doc.data().name,
+      firstName: data.payload.doc.data().firstName,
+      lastName:data.payload.doc.data().lastName,
+     staffMemberID:data.payload.doc.data().id,
+      staffDocID:data.payload.doc.id
+      
+      
+
     };
+    
     const modalDialog = this.matDialog.open(StaffModifyComponent, dialogConfig);
   }
 
-  openRemoveModal() {
+  openRemoveModal(data) {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.id = 'modal-component';
     dialogConfig.height = '30%';
     dialogConfig.width = '90%';
+    dialogConfig.data = {
+      docID: data.payload.doc.id,
+      name: data.payload.doc.data().firstName+" "+data.payload.doc.data().lastName,
+      modify:"Staff"
 
+    };
     const modalDialog = this.matDialog.open(RemoveComponent, dialogConfig);
   }
 }
