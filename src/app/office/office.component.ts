@@ -3,6 +3,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { OfficeModifyComponent } from '../components/office-modify/office-modify.component';
 import { RemoveComponent } from '../components/remove/remove.component';
 import { StaffModifyComponent } from '../components/staff-modify/staff-modify.component';
+import { OfficeService } from '../services/office.service';
 
 
 @Component({
@@ -13,8 +14,11 @@ import { StaffModifyComponent } from '../components/staff-modify/staff-modify.co
 
 
 export class OfficeComponent {
-  constructor(public matDialog: MatDialog) { }
+  constructor(public matDialog: MatDialog,public officeService: OfficeService, ) { 
 
+  }
+
+  
  openStaffModal() {
     const dialogConfig = new MatDialogConfig();
 

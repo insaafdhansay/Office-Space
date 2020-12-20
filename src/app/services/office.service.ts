@@ -9,6 +9,17 @@ import { Observable } from 'rxjs';
 export class OfficeService {
   offices: Observable<any[]>;
   staffMembers: Observable<any[]>;
+  officeID:string;
+  name:string;
+  email:string;
+  tel:string;
+  address:string;
+  maxOcc:string;
+  colour:string;
+  docID:string
+
+
+  
 
 
   constructor(public firestore: AngularFirestore) {
@@ -25,7 +36,6 @@ export class OfficeService {
     return result;
  }
   addOffice(value,officeColour){
-
     return this.firestore.collection('Offices').add({
 
       id:this.makeid(),
@@ -57,6 +67,17 @@ export class OfficeService {
     return this.firestore.collection('Offices').doc(docID).delete();
 
 
+  }
+  setOfficeDetails(value,docID){
+    this.docID= docID;
+    this.name= value.name;
+    this.email=value.email;
+    this.address=value.address;
+    this.tel=value.tel;
+    this.maxOcc=value.maxOcc;
+    this.colour=value.officeCol;
+    this.officeID=value.id;
+    console.log(this.docID,this.name,this.email,this.address,this.tel,this.maxOcc,this.colour,this.officeID)
   }
   
 

@@ -1,24 +1,24 @@
 <div class="officeDetails">
     <div class="header">
       <mat-icon class="icons" routerLink="/home">keyboard_backspace</mat-icon>
-      <h1>Office Name</h1>
+      <h1>{{officeService.name}}</h1>
     </div>
   
     <div class="location">
       <mat-icon class="icons">location_on</mat-icon>
-      <p>Protea Hotel North Wharf</p>
+      <p>{{officeService.address}}</p>
     </div>
     <div class="email">
       <mat-icon class="icons">email</mat-icon>
-      <p>insaafdhansya@gmail.com</p>
+      <p>{{officeService.email}}</p>
     </div>
     <div class="tel">
       <mat-icon class="icons">phone</mat-icon>
-      <p>0823546271</p>
+      <p>{{officeService.tel}}</p>
     </div>
     <div class="occupants">
       <mat-icon class="icons">person</mat-icon>
-      <p>Max Capacity: 15</p>
+      <p>{{officeService.maxOcc}}</p>
     </div>
   </div>
   
