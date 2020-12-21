@@ -26,6 +26,7 @@ export class StaffCardComponent {
   getStaffCardData(officeDocID) {
     
     this.staffMembers = this.staffService.getStaff(officeDocID);
+    
 
   }
 
