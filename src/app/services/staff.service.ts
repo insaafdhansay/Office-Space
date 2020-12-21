@@ -17,15 +17,18 @@ export class StaffService {
     return result;
   }
   addStaffMember(value, officeID) {
+    console.log(officeID);
     return this.firestore.collection('StaffMembers').add({
       firstName: value.firstName,
       lastName: value.lastName,
-     // id: officeID,
-    id: this.makeid(),
+      officeID: officeID,
+      id: this.makeid(),
     });
   }
-  getStaff(){
-    return this.firestore.collection("StaffMembers").snapshotChanges();
+  getStaff(officeDocID) {
+   // return this.firestore.collection('StaffMembers').snapshotChanges();
+   return this.firestore.collection('/StaffMembers', ref => ref.where('officeID', '==', officeDocID)).snapshotChanges();
+
   }
 
   updateStaffMember(docID, value) {

@@ -4,6 +4,9 @@ import { StaffModifyComponent } from '../staff-modify/staff-modify.component';
 import { RemoveComponent } from '../remove/remove.component';
 import { Observable } from 'rxjs';
 import { StaffService } from './../../services/staff.service';
+import { OfficeService } from './../../services/office.service';
+
+
 
 @Component({
   selector: 'app-staff-card',
@@ -12,13 +15,17 @@ import { StaffService } from './../../services/staff.service';
 })
 export class StaffCardComponent {
   staffMembers: Observable<any[]>;
-  constructor(public matDialog: MatDialog,public staffService: StaffService) {}
+  officeDocID:string;
+  constructor(public matDialog: MatDialog,public staffService: StaffService,public officeService: OfficeService) {}
   ngOnInit(): void {
-    this.getStaffCardData();
+
+    this.officeDocID= this.officeService.docID  
+      this.getStaffCardData(this.officeDocID);
+
   }
-  getStaffCardData() {
+  getStaffCardData(officeDocID) {
     
-    this.staffMembers = this.staffService.getStaff();
+    this.staffMembers = this.staffService.getStaff(officeDocID);
 
   }
 
