@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { StaffService } from './../../services/staff.service';
 import { OfficeService } from './../../services/office.service';
 import { ThrowStmt } from '@angular/compiler';
+import { map } from 'rxjs/operators';
 
 
 
@@ -45,6 +46,17 @@ export class StaffCardComponent {
   getStaffCardData(officeDocID) {
     
  this.staffMembers = this.staffService.getStaff(officeDocID);
+
+/** if (this.staffSearchVal==""){
+this.staffMembers = this.staffService.getStaff(officeDocID)
+    }else{
+      this.staffMembers =
+      this.staffService.getStaff(officeDocID).pipe (
+        map(items => 
+         items.filter(item => item.firstName.toLowerCase().includes(this.staffSearchVal) )))
+
+    } */
+ 
 
 
 
