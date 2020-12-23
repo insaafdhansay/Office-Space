@@ -32,8 +32,10 @@ export class RemoveComponent implements OnInit {
     if (this.modify == 'Office') {
       
       this.removeOffice();
+      this.dialogRef.close()
     } else {
       this.removeStaffMember();
+      this.dialogRef.close()
     }
   }
 
@@ -48,7 +50,6 @@ export class RemoveComponent implements OnInit {
     );
   }
   removeStaffMember() {
-    console.log("removing staff member"+this.modify+this.docID+this.name)
     this.staffService.deleteStaffMember(this.docID);
   }
 }

@@ -1,10 +1,10 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { OfficeModifyComponent } from '../office-modify/office-modify.component';
 import { RemoveComponent } from '../remove/remove.component';
 import { OfficeService } from './../../services/office.service';
 import { Observable } from 'rxjs';
-import { Router } from '@angular/router'; 
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-office-card',
@@ -12,20 +12,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./office-card.component.scss'],
 })
 export class OfficeCardComponent implements OnInit {
-
   offices: Observable<any[]>;
-
-  
 
   constructor(
     public matDialog: MatDialog,
     public officeService: OfficeService,
-    private router:Router
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.getOfficeData();
-
   }
   getOfficeData() {
     /**  this.officeService.getOffices().subscribe((result) => {
@@ -69,7 +65,7 @@ export class OfficeCardComponent implements OnInit {
     dialogConfig.data = {
       docID: data.payload.doc.id,
       name: data.payload.doc.data().name,
-      modify:"Office"
+      modify: 'Office',
     };
     const modalDialog = this.matDialog.open(RemoveComponent, dialogConfig);
   }
@@ -77,11 +73,8 @@ export class OfficeCardComponent implements OnInit {
     this.officeService.setOfficeDetails(
       data.payload.doc.data(),
       data.payload.doc.id
-  
-    );   
-  
+    );
 
-    this.router.navigate(['office',data.payload.doc.data().id]);
-
+    this.router.navigate(['office', data.payload.doc.data().id]);//router id parameter
   }
 }

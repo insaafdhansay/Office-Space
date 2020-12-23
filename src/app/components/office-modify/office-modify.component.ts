@@ -81,8 +81,10 @@ export class OfficeModifyComponent implements OnInit {
   onSubmit() {
     if (this.title == 'Add') {
       this.onSubmitAdd();
+      this.dialogRef.close()
     } else {
       this.onSubmitEdit();
+      this.dialogRef.close()
     }
   }
   onSubmitAdd() {
