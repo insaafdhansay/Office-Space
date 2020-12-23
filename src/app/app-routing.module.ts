@@ -15,7 +15,7 @@ const routes: Routes = [  /* {
   component: OfficePageComponent
 }, */
 
-  { path: 'office', loadChildren: () => import('./office/office.module').then(m => m.OfficeModule) },
+  { path: 'office/:id', loadChildren: () => import('./office/office.module').then(m => m.OfficeModule) },
   { path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) }
 
 ];
