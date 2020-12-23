@@ -4,6 +4,7 @@ import { OfficeModifyComponent } from '../office-modify/office-modify.component'
 import { RemoveComponent } from '../remove/remove.component';
 import { OfficeService } from './../../services/office.service';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router'; 
 
 @Component({
   selector: 'app-office-card',
@@ -13,11 +14,13 @@ import { Observable } from 'rxjs';
 export class OfficeCardComponent implements OnInit {
 
   offices: Observable<any[]>;
+
   
 
   constructor(
     public matDialog: MatDialog,
-    public officeService: OfficeService
+    public officeService: OfficeService,
+    private router:Router
   ) {}
 
   ngOnInit(): void {
@@ -76,5 +79,9 @@ export class OfficeCardComponent implements OnInit {
       data.payload.doc.id
   
     );   
+  
+
+    this.router.navigate(['office',data.payload.doc.data().id]);
+
   }
 }
