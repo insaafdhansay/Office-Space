@@ -45,7 +45,7 @@ export class StaffService {
   }
 
   updateStaffMember(docID, value) {
-    return this.firestore.collection('StaffMembers').doc(docID).set(value);
+    return this.firestore.collection('StaffMembers').doc(docID).update(value);
   }
   deleteStaffMember(docID) {
     return this.firestore.collection('StaffMembers').doc(docID).delete();

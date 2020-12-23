@@ -43,7 +43,7 @@ export class OfficeService {
   }
 
   updateOffice(docID, value) {
-    return this.firestore.collection('Offices').doc(docID).set(value);
+    return this.firestore.collection('Offices').doc(docID).update(value);
   }
   deleteOffice(docID) {
     return this.firestore.collection('Offices').doc(docID).delete();
@@ -58,7 +58,8 @@ export class OfficeService {
     this.maxOcc = value.maxOcc;
     this.colour = value.officeCol;
     this.officeID = value.id;
-  console.log(docID);
+
   }
+
 
 }
