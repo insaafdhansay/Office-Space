@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { OfficeModifyComponent } from '../components/office-modify/office-modify.component';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -11,7 +12,8 @@ import { OfficeModifyComponent } from '../components/office-modify/office-modify
 
 
 export class HomeComponent {
-  constructor(public matDialog: MatDialog) { }
+  constructor(public matDialog: MatDialog,
+ ) { }
 
 openOfficeModal() {
     const dialogConfig = new MatDialogConfig();
@@ -19,9 +21,14 @@ openOfficeModal() {
     dialogConfig.id = "modal-component";
     dialogConfig.height = "60%";
     dialogConfig.width = "90%";
+
     dialogConfig.data={
       title:"Add"
     }
+
+
+
+  
 
     const modalDialog = this.matDialog.open(OfficeModifyComponent, dialogConfig);
   }

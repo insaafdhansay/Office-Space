@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 import { MatSelectChange } from '@angular/material/select';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
+
+
 @Component({
   selector: 'app-office-modify',
   templateUrl: './office-modify.component.html',
@@ -79,6 +81,7 @@ export class OfficeModifyComponent implements OnInit {
     console.log(this.selectedColour);
   }
   onSubmit() {
+
     if (this.title == 'Add') {
       this.onSubmitAdd();
       this.dialogRef.close()
@@ -88,6 +91,8 @@ export class OfficeModifyComponent implements OnInit {
     }
   }
   onSubmitAdd() {
+
+
     this.officeService
       .addOffice(this.officeForm.value, this.selectedColour)
       .then((res) => {
