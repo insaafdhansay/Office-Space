@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { OfficeModifyComponent } from '../office-modify/office-modify.component';
 import { RemoveComponent } from '../remove/remove.component';
@@ -11,6 +11,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./office-card.component.scss'],
 })
 export class OfficeCardComponent implements OnInit {
+
   offices: Observable<any[]>;
   
 
@@ -21,6 +22,7 @@ export class OfficeCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getOfficeData();
+
   }
   getOfficeData() {
     /**  this.officeService.getOffices().subscribe((result) => {

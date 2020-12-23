@@ -1,11 +1,17 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Observable,Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
 export class StaffService {
+
+  nameChange: Subject<string> = new Subject<string>();
   constructor(public firestore: AngularFirestore) {}
+  
+  staff: Observable<any[]>;
+  searchVal:any;
+
   makeid() {
     var result = '';
     var characters =
@@ -26,9 +32,16 @@ export class StaffService {
     });
   }
   getStaff(officeDocID) {
-   // return this.firestore.collection('StaffMembers').snapshotChanges();
+  
    return this.firestore.collection('/StaffMembers', ref => ref.where('officeID', '==', officeDocID)).snapshotChanges();
+   
 
+  }
+  searchValSet(searchValue){
+    this.searchVal=searchValue;
+    this.nameChange.next(this.searchVal);
+
+    
   }
 
   updateStaffMember(docID, value) {
@@ -37,4 +50,20 @@ export class StaffService {
   deleteStaffMember(docID) {
     return this.firestore.collection('StaffMembers').doc(docID).delete();
   }
+  /** searchStaff(searchValue,docID){
+    this.searchVal=searchValue;
+    console.log(this.searchVal);
+  
+   this.staffSearched= this.firestore.collection('StaffMembers',ref => ref.where('firstName', '>=', searchValue)
+    .where('firstName', '<=', searchValue + '\uf8ff').where('officeID', '==', docID)).snapshotChanges()
+
+    return this.staffSearched;
+    
+console.log("staffSearched" +this.staffSearched)
+
+  } */
+ 
+
+ 
 }
+

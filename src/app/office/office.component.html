@@ -27,12 +27,14 @@
         class="form-control mr-sm-2"
         type="text"
         placeholder="Search Staff"
+        [(ngModel)]="searchValue" [ngModelOptions]="{standalone: true}"  (keyup)="searchByName()"
       />
     </div>
   
     <span class="staffHeading">Staff members 8/9</span>
       <mat-icon class="addIcon" (click)="  openStaffModal()">add</mat-icon>
   
-    <app-staff-card></app-staff-card>
+    <app-staff-card  ></app-staff-card>
+    
   
   

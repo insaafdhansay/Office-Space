@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { StaffModifyComponent } from '../staff-modify/staff-modify.component';
 import { RemoveComponent } from '../remove/remove.component';
 import { Observable } from 'rxjs';
 import { StaffService } from './../../services/staff.service';
 import { OfficeService } from './../../services/office.service';
+import { ThrowStmt } from '@angular/compiler';
 
 
 
@@ -14,19 +15,38 @@ import { OfficeService } from './../../services/office.service';
   styleUrls: ['./staff-card.component.scss'],
 })
 export class StaffCardComponent {
+
+  staffSearchVal: any;
   staffMembers: Observable<any[]>;
   officeDocID:string;
-  constructor(public matDialog: MatDialog,public staffService: StaffService,public officeService: OfficeService) {}
+
+  constructor(public matDialog: MatDialog,public staffService: StaffService,public officeService: OfficeService, ) {
+
+
+    staffService.nameChange.subscribe((value) => { 
+      this.staffSearchVal = value; 
+      console.log("value "+this.staffSearchVal);
+    });
+  
+  }
+
   ngOnInit(): void {
 
-    this.officeDocID= this.officeService.docID  
-      this.getStaffCardData(this.officeDocID);
+
+
+    this.officeDocID= this.officeService.docID  ;
+    this.getStaffCardData(this.officeDocID); 
+
+     this.staffSearchVal=this.staffService.searchVal;
+
+    
 
   }
   getStaffCardData(officeDocID) {
     
-    this.staffMembers = this.staffService.getStaff(officeDocID);
-    
+ this.staffMembers = this.staffService.getStaff(officeDocID);
+
+
 
   }
 
