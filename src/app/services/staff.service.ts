@@ -58,6 +58,7 @@ export class StaffService {
  return this.firestore.collection('StaffMembers',ref => ref.where('firstName', '>=', searchValue)
       .where('firstName', '<=', searchValue + '\uf8ff').where('officeID', '==', this.officeID))
       .snapshotChanges() 
+  
 
    
   }
