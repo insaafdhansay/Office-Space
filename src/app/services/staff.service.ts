@@ -11,6 +11,7 @@ export class StaffService {
   
   staff: Observable<any[]>;
   searchVal:any;
+  officeID:string;
 
   makeid() {
     var result = '';
@@ -32,10 +33,10 @@ export class StaffService {
     });
   }
   getStaff(officeDocID) {
-  
-   return this.firestore.collection('/StaffMembers', ref => ref.where('officeID', '==', officeDocID)).snapshotChanges();
-   
+   this.officeID=officeDocID;
 
+   return this.firestore.collection('/StaffMembers', ref => ref.where('officeID', '==', officeDocID)).snapshotChanges();
+  
   }
   searchValSet(searchValue){
     this.searchVal=searchValue;
@@ -50,18 +51,17 @@ export class StaffService {
   deleteStaffMember(docID) {
     return this.firestore.collection('StaffMembers').doc(docID).delete();
   }
-  /** searchStaff(searchValue,docID){
-    this.searchVal=searchValue;
-    console.log(this.searchVal);
-  
-   this.staffSearched= this.firestore.collection('StaffMembers',ref => ref.where('firstName', '>=', searchValue)
-    .where('firstName', '<=', searchValue + '\uf8ff').where('officeID', '==', docID)).snapshotChanges()
 
-    return this.staffSearched;
+  searchUsers(searchValue){  
+     console.log("searching by name in service"+ searchValue)
     
-console.log("staffSearched" +this.staffSearched)
+ return this.firestore.collection('StaffMembers',ref => ref.where('firstName', '>=', searchValue)
+      .where('firstName', '<=', searchValue + '\uf8ff').where('officeID', '==', this.officeID))
+      .snapshotChanges() 
 
-  } */
+   
+  }
+
  
 
  
