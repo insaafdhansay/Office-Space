@@ -40,6 +40,7 @@ export class StaffCardComponent {
 
      this.staffSearchVal=this.staffService.searchVal;
 
+
     
 
   }
@@ -47,15 +48,7 @@ export class StaffCardComponent {
     
  this.staffMembers = this.staffService.getStaff(officeDocID);
 
-/** if (this.staffSearchVal==""){
-this.staffMembers = this.staffService.getStaff(officeDocID)
-    }else{
-      this.staffMembers =
-      this.staffService.getStaff(officeDocID).pipe (
-        map(items => 
-         items.filter(item => item.firstName.toLowerCase().includes(this.staffSearchVal) )))
 
-    } */
  
 
 
