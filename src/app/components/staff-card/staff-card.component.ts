@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { StaffService } from './../../services/staff.service';
 import { OfficeService } from './../../services/office.service';
 import { ThrowStmt } from '@angular/compiler';
-import { map } from 'rxjs/operators';
+import { map, filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-staff-card',
@@ -26,7 +26,6 @@ export class StaffCardComponent {
   ) {
     staffService.nameChange.subscribe((value) => {
       this.staffSearchVal = value;
-      console.log('value ' + this.staffSearchVal);
       this.searchByName(value);
     });
   }
@@ -34,16 +33,13 @@ export class StaffCardComponent {
   ngOnInit(): void {
     this.officeDocID = this.officeService.docID;
     this.getStaffCardData(this.officeDocID);
-
     this.staffSearchVal = this.staffService.searchVal;
   }
   getStaffCardData(officeDocID) {
     this.staffMembers = this.staffService.getStaff(officeDocID);
   }
-  searchByName(value){
-
-      this.staffMembers =  this.staffService.searchUsers(value);
-    
+  searchByName(value) {
+    this.staffMembers = this.staffService.searchUsers(value);
   }
 
   openStaffModal(data) {

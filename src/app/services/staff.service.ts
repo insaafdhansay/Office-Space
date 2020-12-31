@@ -11,6 +11,7 @@ export class StaffService {
   
   staff: Observable<any[]>;
   searchVal:any;
+
   officeID:string;
 
   makeid() {
@@ -42,8 +43,9 @@ export class StaffService {
     this.searchVal=searchValue;
     this.nameChange.next(this.searchVal);
 
-    
   }
+ 
+
 
   updateStaffMember(docID, value) {
     return this.firestore.collection('StaffMembers').doc(docID).update(value);
