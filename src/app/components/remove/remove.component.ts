@@ -30,21 +30,20 @@ export class RemoveComponent implements OnInit {
 
   remove() {
     if (this.modify == 'Office') {
-      
       this.removeOffice();
-      this.dialogRef.close()
+      this.dialogRef.close();
     } else {
       this.removeStaffMember();
-      this.dialogRef.close()
+      this.dialogRef.close();
     }
   }
 
   removeOffice() {
     this.officeService.deleteOffice(this.docID).then(
-      res => {
+      (res) => {
         this.router.navigate(['/home']);
       },
-      err => {
+      (err) => {
         console.log(err);
       }
     );

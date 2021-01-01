@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable,Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { Staff } from '../model/types';
 @Injectable({
   providedIn: 'root',
 })
 export class StaffService {
-
   nameChange: Subject<string> = new Subject<string>();
   constructor(public firestore: AngularFirestore) {}
-  
-  staff: Observable<any[]>;
-  searchVal:any;
+
+  staff: Observable<Staff[]>;
+  searchVal: any;
+  officeID: string;
 
   makeid() {
     var result = '';
@@ -22,8 +23,7 @@ export class StaffService {
     }
     return result;
   }
-  addStaffMember(value, officeID) {
-    console.log(officeID);
+  addStaffMember(value: Staff, officeID: string) {
     return this.firestore.collection('StaffMembers').add({
       firstName: value.firstName,
       lastName: value.lastName,
@@ -31,39 +31,24 @@ export class StaffService {
       id: this.makeid(),
     });
   }
-  getStaff(officeDocID) {
-  
-   return this.firestore.collection('/StaffMembers', ref => ref.where('officeID', '==', officeDocID)).snapshotChanges();
-   
+  getStaff(officeDocID: string) {
+    this.officeID = officeDocID;
 
+    return this.firestore
+      .collection('/StaffMembers', (ref) =>
+        ref.where('officeID', '==', officeDocID)
+      )
+      .snapshotChanges();
   }
-  searchValSet(searchValue){
-    this.searchVal=searchValue;
+  searchValSet(searchValue: string) {
+    this.searchVal = searchValue;
     this.nameChange.next(this.searchVal);
-
-    
   }
 
-  updateStaffMember(docID, value) {
+  updateStaffMember(docID: string, value: Staff) {
     return this.firestore.collection('StaffMembers').doc(docID).update(value);
   }
-  deleteStaffMember(docID) {
+  deleteStaffMember(docID: string) {
     return this.firestore.collection('StaffMembers').doc(docID).delete();
   }
-  /** searchStaff(searchValue,docID){
-    this.searchVal=searchValue;
-    console.log(this.searchVal);
-  
-   this.staffSearched= this.firestore.collection('StaffMembers',ref => ref.where('firstName', '>=', searchValue)
-    .where('firstName', '<=', searchValue + '\uf8ff').where('officeID', '==', docID)).snapshotChanges()
-
-    return this.staffSearched;
-    
-console.log("staffSearched" +this.staffSearched)
-
-  } */
- 
-
- 
 }
-

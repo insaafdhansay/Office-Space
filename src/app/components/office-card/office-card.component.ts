@@ -24,12 +24,7 @@ export class OfficeCardComponent implements OnInit {
     this.getOfficeData();
   }
   getOfficeData() {
-    /**  this.officeService.getOffices().subscribe((result) => {
-      this.offices = result;
-    }); */
-
     this.offices = this.officeService.getOffices();
-    //this.officeService.getOffices().subscribe(res =>(this.offices = res));
   }
 
   openOfficeModal(data) {

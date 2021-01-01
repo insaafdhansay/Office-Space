@@ -1,14 +1,11 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { StaffModifyComponent } from '../staff-modify/staff-modify.component';
 import { RemoveComponent } from '../remove/remove.component';
 import { Observable } from 'rxjs';
 import { StaffService } from './../../services/staff.service';
 import { OfficeService } from './../../services/office.service';
-import { ThrowStmt } from '@angular/compiler';
 import { map } from 'rxjs/operators';
-
-
 
 @Component({
   selector: 'app-staff-card',
@@ -16,50 +13,41 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./staff-card.component.scss'],
 })
 export class StaffCardComponent {
-
-  staffSearchVal: any;
+  staffSearchVal: string;
   staffMembers: Observable<any[]>;
-  officeDocID:string;
+  staffMembersFiltered: Observable<any[]>;
+  officeDocID: string;
 
-  constructor(public matDialog: MatDialog,public staffService: StaffService,public officeService: OfficeService, ) {
-
-
-    staffService.nameChange.subscribe((value) => { 
-      this.staffSearchVal = value; 
-      console.log("value "+this.staffSearchVal);
+  constructor(
+    public matDialog: MatDialog,
+    public staffService: StaffService,
+    public officeService: OfficeService
+  ) {
+    staffService.nameChange.subscribe((value) => {
+      this.staffSearchVal = value;
+      this.searchStaff();
     });
-  
   }
 
   ngOnInit(): void {
-
-
-
-    this.officeDocID= this.officeService.docID  ;
-    this.getStaffCardData(this.officeDocID); 
-
-     this.staffSearchVal=this.staffService.searchVal;
-
-    
-
+    this.officeDocID = this.officeService.docID;
+    this.getStaffCardData(this.officeDocID);
+    this.staffSearchVal = this.staffService.searchVal;
   }
   getStaffCardData(officeDocID) {
-    
- this.staffMembers = this.staffService.getStaff(officeDocID);
-
-/** if (this.staffSearchVal==""){
-this.staffMembers = this.staffService.getStaff(officeDocID)
-    }else{
-      this.staffMembers =
-      this.staffService.getStaff(officeDocID).pipe (
-        map(items => 
-         items.filter(item => item.firstName.toLowerCase().includes(this.staffSearchVal) )))
-
-    } */
- 
-
-
-
+    this.staffMembers = this.staffService.getStaff(officeDocID);
+  }
+  searchStaff() {
+    this.staffMembers = this.staffMembers.pipe(
+      map((members) =>
+        members.filter((member) => {
+          return member.payload.doc
+            .data()
+            .firstName.toLowerCase()
+            .includes(this.staffSearchVal);
+        })
+      )
+    );
   }
 
   openStaffModal(data) {
@@ -71,15 +59,12 @@ this.staffMembers = this.staffService.getStaff(officeDocID)
     dialogConfig.data = {
       title: 'Edit',
       firstName: data.payload.doc.data().firstName,
-      lastName:data.payload.doc.data().lastName,
-     staffMemberID:data.payload.doc.data().id,
-      staffDocID:data.payload.doc.id
-      
-      
-
+      lastName: data.payload.doc.data().lastName,
+      staffMemberID: data.payload.doc.data().id,
+      staffDocID: data.payload.doc.id,
     };
-    
-    const modalDialog = this.matDialog.open(StaffModifyComponent, dialogConfig);
+
+    this.matDialog.open(StaffModifyComponent, dialogConfig);
   }
 
   openRemoveModal(data) {
@@ -90,10 +75,12 @@ this.staffMembers = this.staffService.getStaff(officeDocID)
     dialogConfig.width = '90%';
     dialogConfig.data = {
       docID: data.payload.doc.id,
-      name: data.payload.doc.data().firstName+" "+data.payload.doc.data().lastName,
-      modify:"Staff"
-
+      name:
+        data.payload.doc.data().firstName +
+        ' ' +
+        data.payload.doc.data().lastName,
+      modify: 'Staff',
     };
-    const modalDialog = this.matDialog.open(RemoveComponent, dialogConfig);
+    this.matDialog.open(RemoveComponent, dialogConfig);
   }
 }
