@@ -33,9 +33,9 @@ export class OfficeComponent {
     this.staffMembers = this.staffService.getStaff(officeDocID);
     this.staffMembers.subscribe(
       (staff: any) => {
-        const staffData = staff.map((ele) => {
+        const staffData = staff.map((s) => {
           return (
-            ele.payload.doc.data()
+            s.payload.doc.data()
           )
         })
         this.staffArr = staffData;

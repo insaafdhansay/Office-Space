@@ -18,10 +18,10 @@ export class StaffModifyComponent implements OnInit {
   title: string;
   staffForm: FormGroup;
   OfficeDocID: string;
-  firstName:string;
-  lastName:string;
-  staffMemberID:string;
-  staffDocID:string;
+  firstName: string;
+  lastName: string;
+  staffMemberID: string;
+  staffDocID: string;
 
   constructor(
     private fb: FormBuilder,
@@ -32,13 +32,11 @@ export class StaffModifyComponent implements OnInit {
   ) {
     this.title = data.title;
     this.OfficeDocID = data.OfficeDocID;
-    this.firstName=data.firstName;
-    this.lastName=data.lastName;
-    this.staffMemberID=data.staffMemberID;
-    this.staffDocID=data.staffDocID;
-
+    this.firstName = data.firstName;
+    this.lastName = data.lastName;
+    this.staffMemberID = data.staffMemberID;
+    this.staffDocID = data.staffDocID;
   }
-
 
   ngOnInit(): void {
     if (this.title == 'Add') {
@@ -46,10 +44,8 @@ export class StaffModifyComponent implements OnInit {
     } else {
       this.editForm();
     }
-  
   }
   createForm() {
-
     this.staffForm = this.fb.group({
       firstName: [''],
       lastName: [''],
@@ -58,29 +54,23 @@ export class StaffModifyComponent implements OnInit {
   editForm() {
     this.staffForm = this.fb.group({
       firstName: [this.firstName],
-       lastName: [this.lastName],
+      lastName: [this.lastName],
     });
   }
   onSubmit() {
     if (this.title == 'Add') {
       this.onSubmitAdd();
-      this.dialogRef.close()
+      this.dialogRef.close();
     } else {
       this.onSubmitEdit();
-      this.dialogRef.close()
+      this.dialogRef.close();
     }
-  } 
+  }
 
- onSubmitAdd() {
-
-    this.staffService
-      .addStaffMember(this.staffForm.value,this.OfficeDocID )
-      
+  onSubmitAdd() {
+    this.staffService.addStaffMember(this.staffForm.value, this.OfficeDocID);
   }
   onSubmitEdit() {
-    this.staffService.updateStaffMember(this.staffDocID,this.staffForm.value)
- 
-
-  } 
-   
+    this.staffService.updateStaffMember(this.staffDocID, this.staffForm.value);
+  }
 }

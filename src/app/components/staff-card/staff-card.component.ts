@@ -5,8 +5,7 @@ import { RemoveComponent } from '../remove/remove.component';
 import { Observable } from 'rxjs';
 import { StaffService } from './../../services/staff.service';
 import { OfficeService } from './../../services/office.service';
-import { ThrowStmt } from '@angular/compiler';
-import { map, filter } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-staff-card',
@@ -14,7 +13,7 @@ import { map, filter } from 'rxjs/operators';
   styleUrls: ['./staff-card.component.scss'],
 })
 export class StaffCardComponent {
-  staffSearchVal: any;
+  staffSearchVal: string;
   staffMembers: Observable<any[]>;
   staffMembersFiltered: Observable<any[]>;
   officeDocID: string;
@@ -26,7 +25,7 @@ export class StaffCardComponent {
   ) {
     staffService.nameChange.subscribe((value) => {
       this.staffSearchVal = value;
-      this.searchByName(value);
+      this.searchStaff();
     });
   }
 
@@ -38,8 +37,17 @@ export class StaffCardComponent {
   getStaffCardData(officeDocID) {
     this.staffMembers = this.staffService.getStaff(officeDocID);
   }
-  searchByName(value) {
-    this.staffMembers = this.staffService.searchUsers(value);
+  searchStaff() {
+    this.staffMembers = this.staffMembers.pipe(
+      map((members) =>
+        members.filter((member) => {
+          return member.payload.doc
+            .data()
+            .firstName.toLowerCase()
+            .includes(this.staffSearchVal);
+        })
+      )
+    );
   }
 
   openStaffModal(data) {
@@ -56,7 +64,7 @@ export class StaffCardComponent {
       staffDocID: data.payload.doc.id,
     };
 
-    const modalDialog = this.matDialog.open(StaffModifyComponent, dialogConfig);
+    this.matDialog.open(StaffModifyComponent, dialogConfig);
   }
 
   openRemoveModal(data) {
@@ -73,6 +81,6 @@ export class StaffCardComponent {
         data.payload.doc.data().lastName,
       modify: 'Staff',
     };
-    const modalDialog = this.matDialog.open(RemoveComponent, dialogConfig);
+    this.matDialog.open(RemoveComponent, dialogConfig);
   }
 }

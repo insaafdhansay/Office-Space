@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { Office } from '../model/types';
 
 @Injectable({
   providedIn: 'root',
@@ -27,7 +28,7 @@ export class OfficeService {
     }
     return result;
   }
-  addOffice(value, officeColour) {
+  addOffice(value: Office, officeColour: string) {
     return this.firestore.collection('Offices').add({
       id: this.makeid(),
       name: value.name,
@@ -42,13 +43,14 @@ export class OfficeService {
     return this.firestore.collection('Offices').snapshotChanges();
   }
 
-  updateOffice(docID, value) {
+  updateOffice(docID: string, value: Office) {
     return this.firestore.collection('Offices').doc(docID).update(value);
   }
-  deleteOffice(docID) {
+
+  deleteOffice(docID: string) {
     return this.firestore.collection('Offices').doc(docID).delete();
   }
-  setOfficeDetails(value, docID) {
+  setOfficeDetails(value: Office, docID: string) {
     //setting data from home page for the office selected, passing to service for office page to access
     this.docID = docID;
     this.name = value.name;
@@ -58,8 +60,5 @@ export class OfficeService {
     this.maxOcc = value.maxOcc;
     this.colour = value.officeCol;
     this.officeID = value.id;
-
   }
-
-
 }

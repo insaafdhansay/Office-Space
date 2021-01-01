@@ -2,15 +2,11 @@ import { Component, OnInit, Inject } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
-  Validators,
-  FormControl,
 } from '@angular/forms';
 import { OfficeService } from './../../services/office.service';
 import { Router } from '@angular/router';
 import { MatSelectChange } from '@angular/material/select';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-
-
 
 @Component({
   selector: 'app-office-modify',
@@ -81,18 +77,15 @@ export class OfficeModifyComponent implements OnInit {
     console.log(this.selectedColour);
   }
   onSubmit() {
-
     if (this.title == 'Add') {
       this.onSubmitAdd();
-      this.dialogRef.close()
+      this.dialogRef.close();
     } else {
       this.onSubmitEdit();
-      this.dialogRef.close()
+      this.dialogRef.close();
     }
   }
   onSubmitAdd() {
-
-
     this.officeService
       .addOffice(this.officeForm.value, this.selectedColour)
       .then((res) => {
@@ -100,13 +93,10 @@ export class OfficeModifyComponent implements OnInit {
       });
   }
   onSubmitEdit() {
-    this.officeService.updateOffice(this.docID, this.officeForm.value)
-  .then(
-    res => {
-      this.router.navigate(['/home']);
-    }
-  )
-
+    this.officeService
+      .updateOffice(this.docID, this.officeForm.value)
+      .then((res) => {
+        this.router.navigate(['/home']);
+      });
   }
-  
 }
