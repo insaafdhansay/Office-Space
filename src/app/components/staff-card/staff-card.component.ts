@@ -34,9 +34,16 @@ export class StaffCardComponent {
     this.getStaffCardData(this.officeDocID);
     this.staffSearchVal = this.staffService.searchVal;
   }
+  /**
+   * retrieve staff members from service
+   * @param officeDocID
+   */
   getStaffCardData(officeDocID) {
     this.staffMembers = this.staffService.getStaff(officeDocID);
   }
+  /**
+   * Search functionality (using a filter by staff name)
+   */
   searchStaff() {
     this.staffMembers = this.staffMembers.pipe(
       map((members) =>
@@ -50,6 +57,10 @@ export class StaffCardComponent {
     );
   }
 
+  /**
+   * Open populated staff member modal to edit staff member (staffModify Component)
+   * @param data
+   */
   openStaffModal(data) {
     const dialogConfig = new MatDialogConfig();
 
@@ -66,7 +77,10 @@ export class StaffCardComponent {
 
     this.matDialog.open(StaffModifyComponent, dialogConfig);
   }
-
+  /**
+   * Opens removal modal
+   * @param data
+   */
   openRemoveModal(data) {
     const dialogConfig = new MatDialogConfig();
 

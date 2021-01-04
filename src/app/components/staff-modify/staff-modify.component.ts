@@ -45,18 +45,27 @@ export class StaffModifyComponent implements OnInit {
       this.editForm();
     }
   }
+  /**
+   * Creates empty form for adding staff member
+   */
   createForm() {
     this.staffForm = this.fb.group({
       firstName: [''],
       lastName: [''],
     });
   }
+  /**
+   * Populated form for editing staff member details
+   */
   editForm() {
     this.staffForm = this.fb.group({
       firstName: [this.firstName],
       lastName: [this.lastName],
     });
   }
+  /**
+   * On submit handler for editing and adding staff members
+   */
   onSubmit() {
     if (this.title == 'Add') {
       this.onSubmitAdd();
@@ -66,10 +75,15 @@ export class StaffModifyComponent implements OnInit {
       this.dialogRef.close();
     }
   }
-
+  /**
+   * Sending the staff member details to the staff servive to be added to the database 
+   */
   onSubmitAdd() {
     this.staffService.addStaffMember(this.staffForm.value, this.OfficeDocID);
   }
+   /**
+   * Sending the staff member details to the staff servive to be updated in the database 
+   */
   onSubmitEdit() {
     this.staffService.updateStaffMember(this.staffDocID, this.staffForm.value);
   }

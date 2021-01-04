@@ -19,6 +19,8 @@ import { environment } from '../environments/environment';
 import { OfficeService } from './services/office.service';
 import { StaffService } from './services/staff.service';
 import { MatSelectModule } from '@angular/material/select';
+import {MatBadgeModule} from '@angular/material/badge';
+
 
 @NgModule({
   declarations: [AppComponent, OfficeModifyComponent, RemoveComponent],
@@ -38,6 +40,7 @@ import { MatSelectModule } from '@angular/material/select';
     ReactiveFormsModule,
     FormsModule,
     MatSelectModule,
+    MatBadgeModule,
   ],
   providers: [OfficeService,StaffService],
   bootstrap: [AppComponent],

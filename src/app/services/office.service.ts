@@ -7,7 +7,7 @@ import { Office } from '../model/types';
   providedIn: 'root',
 })
 export class OfficeService {
-  offices: Observable<any[]>;
+  offices: Observable<Office[]>;
   officeID: string;
   name: string;
   email: string;
@@ -18,6 +18,10 @@ export class OfficeService {
   docID: string;
 
   constructor(public firestore: AngularFirestore) {}
+  /**
+   * Generate  ID of random string of 24 alphanumeric characters
+   * @return Id
+   */
   makeid() {
     var result = '';
     var characters =
@@ -28,6 +32,10 @@ export class OfficeService {
     }
     return result;
   }
+
+  /**
+   * Add Office to the database.
+   */
   addOffice(value: Office, officeColour: string) {
     return this.firestore.collection('Offices').add({
       id: this.makeid(),
@@ -39,19 +47,29 @@ export class OfficeService {
       officeCol: officeColour,
     });
   }
+  /**
+   * Retrieve all offices stored in the database.
+   */
   getOffices() {
     return this.firestore.collection('Offices').snapshotChanges();
   }
-
+  /**
+   * Update office details in the database.
+   */
   updateOffice(docID: string, value: Office) {
     return this.firestore.collection('Offices').doc(docID).update(value);
   }
 
+  /**
+   * Remove office from the database.
+   */
   deleteOffice(docID: string) {
     return this.firestore.collection('Offices').doc(docID).delete();
   }
+  /**
+   * Setting office details to variables, to be accessed by the office page component to display relevant details. 
+   */
   setOfficeDetails(value: Office, docID: string) {
-    //setting data from home page for the office selected, passing to service for office page to access
     this.docID = docID;
     this.name = value.name;
     this.email = value.email;

@@ -10,7 +10,10 @@ import { OfficeModifyComponent } from '../components/office-modify/office-modify
 export class HomeComponent {
   constructor(public matDialog: MatDialog) {}
 
-  openOfficeModal() {
+  /** 
+   * Opens the add office modal (officeModify component) on the click of the add office button, passing the title 'add'as data
+  */
+openOfficeModal() {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.id = 'modal-component';

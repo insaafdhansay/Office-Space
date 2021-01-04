@@ -28,6 +28,9 @@ export class RemoveComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  /**
+   * Remove onclick handler
+   */
   remove() {
     if (this.modify == 'Office') {
       this.removeOffice();
@@ -37,7 +40,9 @@ export class RemoveComponent implements OnInit {
       this.dialogRef.close();
     }
   }
-
+  /**
+   * Send the office ID to be removed to the office service
+   */
   removeOffice() {
     this.officeService.deleteOffice(this.docID).then(
       (res) => {
@@ -48,6 +53,9 @@ export class RemoveComponent implements OnInit {
       }
     );
   }
+  /**
+   * Send the doc ID of the staff member to be removed to the staff service
+   */
   removeStaffMember() {
     this.staffService.deleteStaffMember(this.docID);
   }

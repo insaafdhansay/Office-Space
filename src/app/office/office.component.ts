@@ -28,7 +28,10 @@ export class OfficeComponent {
     this.officeDocID = this.officeService.docID;
     this.getStaffNum(this.officeDocID);
   }
-
+/**
+ * Setting the number of staff currently belonging to the office. 
+ * @param officeDocID 
+ */
   getStaffNum(officeDocID) {
     this.staffMembers = this.staffService.getStaff(officeDocID);
     this.staffMembers.subscribe(
@@ -40,21 +43,24 @@ export class OfficeComponent {
         })
         this.staffArr = staffData;
         this.numStaff = this.staffArr.length
-        console.log(staffData)
+        
       },
       (err) => {
         console.log(err);
       }
     );
   }
-
+/**
+ * Updating the search value in staffService on each new keystroke.  
+ */
   searchByName() {
     let value = this.searchValue.toLowerCase();
-    /** this.staffSearched = this.staffService
-      .searchStaff(value, this.officeDocID)
-      */
+    
     this.staffService.searchValSet(value);
   }
+  /**
+ *  Opens the add staff modal (staffModify component) on the click of the add staff button, passing the title 'add'as data
+ */
   openStaffModal() {
     const dialogConfig = new MatDialogConfig();
 

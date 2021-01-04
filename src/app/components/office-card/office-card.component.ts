@@ -6,6 +6,7 @@ import { OfficeService } from './../../services/office.service';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-office-card',
   templateUrl: './office-card.component.html',
@@ -23,10 +24,17 @@ export class OfficeCardComponent implements OnInit {
   ngOnInit(): void {
     this.getOfficeData();
   }
+  /**
+   * Retrieve office data from office service
+   */
   getOfficeData() {
     this.offices = this.officeService.getOffices();
   }
 
+  /**
+   * Open office edit modal (officeModify component) populated with office data
+   *  @param data
+   */
   openOfficeModal(data) {
     const dialogConfig = new MatDialogConfig();
 
@@ -50,7 +58,10 @@ export class OfficeCardComponent implements OnInit {
       dialogConfig
     );
   }
-
+/**
+ * Opens removal modal
+ * @param data 
+ */
   openRemoveModal(data) {
     const dialogConfig = new MatDialogConfig();
 
@@ -64,12 +75,15 @@ export class OfficeCardComponent implements OnInit {
     };
     const modalDialog = this.matDialog.open(RemoveComponent, dialogConfig);
   }
+  /**
+   * Passing office details to service when the card is clicked on.
+   */
   setOffice(data) {
     this.officeService.setOfficeDetails(
       data.payload.doc.data(),
       data.payload.doc.id
     );
 
-    this.router.navigate(['office', data.payload.doc.data().id]);//router id parameter
+    this.router.navigate(['office', data.payload.doc.data().id]); //router id parameter
   }
 }

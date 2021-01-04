@@ -1,8 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-} from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { OfficeService } from './../../services/office.service';
 import { Router } from '@angular/router';
 import { MatSelectChange } from '@angular/material/select';
@@ -33,6 +30,7 @@ export class OfficeModifyComponent implements OnInit {
     public dialogRef: MatDialogRef<OfficeModifyComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
+    //retrieving data from input to populate modal
     this.title = data.title;
     this.name = data.name;
     this.email = data.email;
@@ -51,7 +49,9 @@ export class OfficeModifyComponent implements OnInit {
       this.editForm();
     }
   }
-
+  /**
+   * Creating a form with empty fields (when adding an office)
+   */
   createForm() {
     this.officeForm = this.fb.group({
       name: [''],
@@ -62,6 +62,9 @@ export class OfficeModifyComponent implements OnInit {
       officeCol: [''],
     });
   }
+  /*
+   * Creating a form with populated fields (when editing an office)
+   */
   editForm() {
     this.officeForm = this.fb.group({
       name: [this.name],
@@ -72,10 +75,16 @@ export class OfficeModifyComponent implements OnInit {
       officeCol: [this.colour], //setting isnt working
     });
   }
+  /**
+   * Retrieving the office colour selected
+   */
   selectedValue(event: MatSelectChange) {
     this.selectedColour = event.source.triggerValue;
-    console.log(this.selectedColour);
   }
+  /**
+   * On submit handler for editing and adding an office 
+   */
+
   onSubmit() {
     if (this.title == 'Add') {
       this.onSubmitAdd();
@@ -85,6 +94,9 @@ export class OfficeModifyComponent implements OnInit {
       this.dialogRef.close();
     }
   }
+  /**
+   * Sending the office details to the office servive to be added to the database
+   */
   onSubmitAdd() {
     this.officeService
       .addOffice(this.officeForm.value, this.selectedColour)
@@ -92,6 +104,9 @@ export class OfficeModifyComponent implements OnInit {
         this.router.navigate(['/home']);
       });
   }
+  /**
+   * Sending the office details to the office servive to be updated in the database
+   */
   onSubmitEdit() {
     this.officeService
       .updateOffice(this.docID, this.officeForm.value)

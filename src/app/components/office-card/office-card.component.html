@@ -1,29 +1,43 @@
+<mat-card
+  class="office-card"
+  *ngFor="let office of offices | async"
+  (click)="setOffice(office)"
+>
+  <mat-card-header>
+    <img src="/assets/office.png" alt="building" mat-card-avatar />
+    <mat-card-title >{{ office.payload.doc.data().name }} </mat-card-title>
 
+    <mat-card-subtitle>{{
+      office.payload.doc.data().address
+    }}</mat-card-subtitle>
+    <div class="modify">
+      <mat-icon
+        class="icons"
+        mat-card-avatar
+        (click)="openOfficeModal(office)"
+        (click)="$event.stopPropagation()"
+        >edit</mat-icon
+      >
+      <mat-icon
+        class="icons"
+        mat-card-avatar
+        (click)="openRemoveModal(office)"
+        (click)="$event.stopPropagation()"
+        >delete</mat-icon
+      >
+    </div>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="email">
+      <mat-icon class="icons" mat-card-avatar>email</mat-icon>
+      <p>{{ office.payload.doc.data().email }}</p>
+      <p>{{ staffSearch }}</p>
+    </div>
+
+    <div class="phone">
+      <mat-icon class="icons" mat-card-avatar>phone</mat-icon>
+      <p>{{ office.payload.doc.data().tel }}</p>
+    </div>
    
-  <mat-card class="office-card"  *ngFor="let office of offices | async" (click)="setOffice(office)"   >
-    <mat-card-header>
-      <img src="/assets/office.png" alt="building" mat-card-avatar />
-      <mat-card-title>{{office.payload.doc.data().name}} </mat-card-title>
-
-      <mat-card-subtitle>{{office.payload.doc.data().address}}</mat-card-subtitle>
-      <div class="modify" >
-        <mat-icon class="icons" mat-card-avatar (click)="openOfficeModal(office)" (click)="$event.stopPropagation()" >edit</mat-icon>
-        <mat-icon class="icons" mat-card-avatar (click)="openRemoveModal(office)" (click)="$event.stopPropagation()">delete</mat-icon>
-      </div>
-    </mat-card-header>
-    <mat-card-content>
-      <div class="email">
-        <mat-icon class="icons" mat-card-avatar>email</mat-icon>
-        <p>{{office.payload.doc.data().email}}</p>
-        <p> {{staffSearch}}</p>
-      </div>
-
-      <div class="phone">
-        <mat-icon class="icons" mat-card-avatar>phone</mat-icon>
-        <p>{{office.payload.doc.data().tel}}</p>
-
-      
-      </div>
-    </mat-card-content>
-  </mat-card>
-
+  </mat-card-content>
+</mat-card>
