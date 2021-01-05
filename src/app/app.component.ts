@@ -3,10 +3,6 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 
-
-
-
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
