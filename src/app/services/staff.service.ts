@@ -80,7 +80,6 @@ export class StaffService {
     this.staffMem.subscribe(
       (staff: any) => {
         staff.map((s) => {
-          console.log(s.payload.doc.id);
           return this.firestore
             .collection('StaffMembers')
             .doc(s.payload.doc.id)
