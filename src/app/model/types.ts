@@ -1,12 +1,12 @@
 /**
- * Types declared 
+ * Types declared for office and staff
  */
 
 export interface Staff {
   firstName: string;
   lastName: string;
   id: string;
-  officeID: string;
+  officeID: string; 
 }
 
 export interface Office {

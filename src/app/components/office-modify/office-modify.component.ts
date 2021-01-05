@@ -65,6 +65,7 @@ export class OfficeModifyComponent implements OnInit {
   /*
    * Creating a form with populated fields (when editing an office)
    */
+  
   editForm() {
     this.officeForm = this.fb.group({
       name: [this.name],
@@ -72,8 +73,9 @@ export class OfficeModifyComponent implements OnInit {
       email: [this.email],
       tel: [this.tel],
       maxOcc: [this.maxOcc],
-      officeCol: [this.colour], //setting isnt working
+      officeCol: [this.colour],
     });
+    console.log(this.colour)
   }
   /**
    * Retrieving the office colour selected

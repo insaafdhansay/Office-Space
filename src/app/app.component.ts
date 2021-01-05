@@ -13,13 +13,11 @@ import { Observable } from 'rxjs';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  //title = 'Office-Space';
-  //offices: Observable<any[]>;
-  //staffMembers: Observable<any[]>;
+  title = 'Office-Space';
+  
 
-  constructor(firestore: AngularFirestore) {
-    /**    this.offices = firestore.collection('Offices').valueChanges();
-    this.staffMembers = firestore.collection('StaffMembers').valueChanges(); */
+  constructor() {
+  
 
   }
 }
