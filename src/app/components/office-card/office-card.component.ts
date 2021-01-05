@@ -14,6 +14,8 @@ import { Router } from '@angular/router';
 })
 export class OfficeCardComponent implements OnInit {
   offices: Observable<any[]>;
+  officeID:string;
+  
 
   constructor(
     public matDialog: MatDialog,
