@@ -43,7 +43,8 @@ export class RemoveComponent implements OnInit {
   /**
    * Send the office ID to be removed to the office service
    */
-  removeOffice() {
+  removeOffice() {  
+    this.staffService.deleteOfficeStaff(this.docID);
     this.officeService.deleteOffice(this.docID).then(
       (res) => {
         this.router.navigate(['/home']);
@@ -52,6 +53,8 @@ export class RemoveComponent implements OnInit {
         console.log(err);
       }
     );
+  
+   
   }
   /**
    * Send the doc ID of the staff member to be removed to the staff service

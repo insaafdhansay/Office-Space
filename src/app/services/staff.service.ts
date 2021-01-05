@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable, Subject } from 'rxjs';
 import { Staff } from '../model/types';
+import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
@@ -10,6 +11,7 @@ export class StaffService {
   constructor(public firestore: AngularFirestore) {}
 
   staff: Observable<Staff[]>; //Observable of type staff (declared in model)
+  staffMem: Observable<any[]>;
   searchVal: string;
   officeID: string;
 
@@ -28,7 +30,7 @@ export class StaffService {
     return result;
   }
   /**
-   * Add staff member to the database for a particular office. 
+   * Add staff member to the database for a particular office.
    */
   addStaffMember(value: Staff, officeID: string) {
     return this.firestore.collection('StaffMembers').add({
@@ -38,8 +40,8 @@ export class StaffService {
       id: this.makeid(),
     });
   }
-   /**
-   * Retrieve all staff records from the database, for the chosen office. 
+  /**
+   * Retrieve all staff records from the database, for the chosen office.
    */
   getStaff(officeDocID: string) {
     this.officeID = officeDocID;
@@ -50,8 +52,8 @@ export class StaffService {
       )
       .snapshotChanges();
   }
-   /**
-   * Update the search value stored. 
+  /**
+   * Update the search value stored.
    */
   searchValSet(searchValue: string) {
     this.searchVal = searchValue;
@@ -64,9 +66,30 @@ export class StaffService {
     return this.firestore.collection('StaffMembers').doc(docID).update(value);
   }
   /**
-   *Remove staff member record from the database. 
+   *Remove staff member record from the database.
    */
   deleteStaffMember(docID: string) {
     return this.firestore.collection('StaffMembers').doc(docID).delete();
+  }
+  /**
+   * Removes all staff members belonging to the office being deleted.
+   * @param officeID
+   */
+  deleteOfficeStaff(officeID: string) {
+    this.staffMem = this.getStaff(officeID);
+    this.staffMem.subscribe(
+      (staff: any) => {
+        staff.map((s) => {
+          console.log(s.payload.doc.id);
+          return this.firestore
+            .collection('StaffMembers')
+            .doc(s.payload.doc.id)
+            .delete();
+        });
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 }
