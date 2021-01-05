@@ -75,7 +75,6 @@ export class OfficeModifyComponent implements OnInit {
       maxOcc: [this.maxOcc],
       officeCol: [this.colour],
     });
-    console.log(this.colour)
   }
   /**
    * Retrieving the office colour selected
