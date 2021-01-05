@@ -7,7 +7,6 @@ import { Office } from '../model/types';
   providedIn: 'root',
 })
 export class OfficeService {
-  offices: Observable<Office[]>;
   officeID: string;
   name: string;
   email: string;

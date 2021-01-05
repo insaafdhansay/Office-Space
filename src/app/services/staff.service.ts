@@ -9,8 +9,6 @@ import { map } from 'rxjs/operators';
 export class StaffService {
   nameChange: Subject<string> = new Subject<string>();
   constructor(public firestore: AngularFirestore) {}
-
-  staff: Observable<Staff[]>; //Observable of type staff (declared in model)
   staffMem: Observable<any[]>;
   searchVal: string;
   officeID: string;
