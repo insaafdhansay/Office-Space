@@ -48,10 +48,10 @@ export class StaffCardComponent {
     this.staffMembers = this.staffMembers.pipe(
       map((members) =>
         members.filter((member) => {
-          return member.payload.doc
+          let name = member.payload.doc
             .data()
-            .firstName.toLowerCase()
-            .includes(this.staffSearchVal);
+            .firstName.concat(' ', member.payload.doc.data().lastName);
+          return name.toLowerCase().includes(this.staffSearchVal);
         })
       )
     );
