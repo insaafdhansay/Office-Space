@@ -22,6 +22,8 @@ export class StaffModifyComponent implements OnInit {
   lastName: string;
   staffMemberID: string;
   staffDocID: string;
+  numStaff: number;
+  maxOcc: number;
 
   constructor(
     private fb: FormBuilder,
@@ -76,13 +78,13 @@ export class StaffModifyComponent implements OnInit {
     }
   }
   /**
-   * Sending the staff member details to the staff servive to be added to the database 
+   * Sending the staff member details to the staff servive to be added to the database
    */
   onSubmitAdd() {
     this.staffService.addStaffMember(this.staffForm.value, this.OfficeDocID);
   }
-   /**
-   * Sending the staff member details to the staff servive to be updated in the database 
+  /**
+   * Sending the staff member details to the staff servive to be updated in the database
    */
   onSubmitEdit() {
     this.staffService.updateStaffMember(this.staffDocID, this.staffForm.value);

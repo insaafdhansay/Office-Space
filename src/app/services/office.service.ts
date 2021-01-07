@@ -13,7 +13,7 @@ export class OfficeService {
   email: string;
   tel: string;
   address: string;
-  maxOcc: string;
+  maxOcc: number;
   colour: string;
   docID: string;
 
@@ -43,7 +43,7 @@ export class OfficeService {
       email: value.email,
       tel: value.tel,
       address: value.address,
-      maxOcc: parseInt(value.maxOcc),
+      maxOcc: (value.maxOcc),
       officeCol: officeColour,
     });
   }

@@ -4,7 +4,7 @@
     <h1>{{ officeService.name }}</h1>
   </div>
 
-  <div  class="location">
+  <div class="location">
     <mat-icon class="icons">location_on</mat-icon>
     <p>{{ officeService.address }}</p>
   </div>
@@ -37,5 +37,13 @@
   >Staff members {{ numStaff }}/{{ officeService.maxOcc }}</span
 >
 <mat-icon class="addIcon" (click)="openStaffModal()">add</mat-icon>
+
+<div *ngIf="showAlert" class="alert alert-danger" role="alert">
+  <strong>The office capacity has been reached!</strong> No more staff members
+  may be added.
+  <button type="button" class="close" aria-label="Close" (click)="closeAlert()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
 
 <app-staff-card></app-staff-card>

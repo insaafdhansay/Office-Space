@@ -13,7 +13,7 @@ export interface Office {
   address: string;
   email: string;
   id: string;
-  maxOcc: string;
+  maxOcc: number;
   name: string;
   officeCol: string;
   tel: string;

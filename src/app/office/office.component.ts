@@ -6,6 +6,7 @@ import { StaffModifyComponent } from '../components/staff-modify/staff-modify.co
 import { OfficeService } from '../services/office.service';
 import { StaffService } from '../services/staff.service';
 import { Observable } from 'rxjs';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-office',
@@ -19,6 +20,7 @@ export class OfficeComponent {
   officeDocID: string;
   searchValue: string = '';
   numStaff: number;
+  showAlert = false;
 
   constructor(
     public matDialog: MatDialog,
@@ -59,16 +61,29 @@ export class OfficeComponent {
    *  Opens the add staff modal (staffModify component) on the click of the add staff button, passing the title 'add'as data
    */
   openStaffModal() {
-    const dialogConfig = new MatDialogConfig();
+    if (this.numStaff >= this.officeService.maxOcc) {
+      console.log('alert');
+      this.showAlert = true;
+    } else {
+      const dialogConfig = new MatDialogConfig();
 
-    dialogConfig.id = 'modal-component';
-    dialogConfig.height = '60%';
-    dialogConfig.width = '90%';
-    dialogConfig.data = {
-      title: 'Add',
-      OfficeDocID: this.officeService.docID,
-    };
+      dialogConfig.id = 'modal-component';
+      dialogConfig.height = '60%';
+      dialogConfig.width = '90%';
+      dialogConfig.data = {
+        title: 'Add',
+        OfficeDocID: this.officeService.docID,
+        numStaff: this.numStaff,
+        maxOcc: this.officeService.maxOcc,
+      };
 
-    const modalDialog = this.matDialog.open(StaffModifyComponent, dialogConfig);
+      const modalDialog = this.matDialog.open(
+        StaffModifyComponent,
+        dialogConfig
+      );
+    }
+  }
+  closeAlert() {
+    this.showAlert=false;
   }
 }
