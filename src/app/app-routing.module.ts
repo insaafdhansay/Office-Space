@@ -3,14 +3,21 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'office/:id',
-    loadChildren: () =>
-      import('./office/office.module').then((m) => m.OfficeModule),
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'home'
   },
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
   },
+  
+  {
+    path: 'office/:id',
+    loadChildren: () =>
+      import('./office/office.module').then((m) => m.OfficeModule),
+  },
+
 ];
 
 @NgModule({
